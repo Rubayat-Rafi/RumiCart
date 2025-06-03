@@ -14,12 +14,12 @@ async function conncetDB() {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
-    };
+    }
     cached.promise = mongoose
       .connect(`${process.env.MONGODB_URI}/rumicart`, opts)
       .then((mongoose) => {
         return mongoose;
-      });
+      })
   }
 
   cached.conn = await cached.promise;
