@@ -15,6 +15,7 @@ export const useAppContext = () => {
 export const AppContextProvider = (props) => {
   const currency = process.env.NEXT_PUBLIC_CURRENCY;
   const router = useRouter();
+  
   const { user } = useUser();
   const { getToken } = useAuth();
 
@@ -34,9 +35,11 @@ export const AppContextProvider = (props) => {
       }
 
       const token = await getToken();
-      const { data } = await axios.get('/api/user/data', {
+      const { data } = await axios.get("/api/user/data", {
         headers: { Authorization: `Bearer ${token}`},
       });
+      console.log(data);
+
       if (data.success) {
         setUserData(data.user);
         setCartItems(data.user.cartItems);
